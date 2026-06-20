@@ -1,4 +1,4 @@
-function copyTitleToClipboard() {
+async function copyTitleToClipboard() {
 
   let plainText = window.location.href;
 
@@ -13,12 +13,15 @@ function copyTitleToClipboard() {
     'text/plain': textBlob,
   });
 
-  navigator.clipboard.
+  await navigator.clipboard.
     write([clipboardItem]).
     catch((err) => {
-      console.error('Failed to write to clipboard: ', err);
+      alert('failed to write to clipboard: ' + err.message);
     });
 
 }
 
-copyTitleToClipboard();
+
+(async () => {
+  await copyTitleToClipboard();
+})();
